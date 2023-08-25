@@ -2,11 +2,18 @@
 
 import 'package:cv_afrik/core/global_functions.dart';
 import 'package:cv_afrik/core/localization_controller.dart';
+import 'package:cv_afrik/core/route_config.dart';
 import 'package:cv_afrik/provider/core/traduction_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark),
+  );
   runApp(MyApp());
 }
 
@@ -21,8 +28,9 @@ class MyApp extends StatelessWidget {
       init: provider,
       initState: (_) => TraductionProvider.provider.initialization(),
       builder: (traduction) {
-        return MaterialApp(
+        return MaterialApp.router(
           title: 'Flutter Demo',
+          routerConfig: RoutesConfigurations().router,
           debugShowCheckedModeBanner: false,
           locale: traduction.selectedLangage.trim().isNotEmpty
               ? Locale.fromSubtags(languageCode: traduction.selectedLangage)
@@ -34,7 +42,6 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const MyHomePage(title: 'Flutter Demo Home Page'),
         );
       },
     );

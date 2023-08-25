@@ -10,7 +10,7 @@ import 'formation_model.dart';
 import 'langage_model.dart';
 
 class CvModel {
-  String id;
+  String? id;
   String? templateId;
   String? themId;
   ProfileModel profie;
@@ -29,7 +29,7 @@ class CvModel {
     this.competances,
     this.conctate,
     this.formations,
-    required this.id,
+    this.id,
     this.langues,
     this.loisires,
     this.private,
@@ -41,7 +41,7 @@ class CvModel {
   });
 
   Map<String, dynamic> toMap() => {
-        // CVKey.themeId:themId,  
+        // CVKey.themeId:themId,
         CVKey.templeteId: templateId,
         CVKey.references: references?.map((e) => e.toMap()).toList() ?? [],
         CVKey.preffessionelRoutes:
